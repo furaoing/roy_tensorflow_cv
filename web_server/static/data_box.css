@@ -1,0 +1,33 @@
+ul {
+    list-style-type: none;
+    margin-top: 20px;
+    padding-top: 40px;
+}
+
+.comment_title {
+    margin-bottom: 35px;
+}
+
+.comment_title span {
+    margin-left:80px;
+}
+
+.nonReact_span {
+    margin-left:35px;
+}
+
+.ip {
+    margin-left:10px;
+}
+
+#submit {
+    margin-left:20px;
+}
+
+#query_download {
+    margin-left:100px;
+}
+
+a:link {text-decoration:none;}
+a:hover {text-decoration:underline;}
+a:active {text-decoration:underline;}
