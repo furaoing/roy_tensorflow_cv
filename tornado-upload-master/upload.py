@@ -28,14 +28,16 @@ class UploadHandler(tornado.web.RequestHandler):
         extension = os.path.splitext(original_fname)[1]
         fname = ''.join(random.choice(string.ascii_lowercase + string.digits) for x in range(6))
         final_filename= fname+extension
-        output_file = open("uploads/" + final_filename, 'wb')
+
+        relative_path = "uploads/" + final_filename
+        #base_path = "/home/furaoing/roy_tensorflow_cv/tornado-upload-master"
+        base_path = sys.path[0]
+        abs_path = os.path.join(base_path, relative_path)
+
+        output_file = open(abs_path, 'wb')
         output_file.write(file1['body'])
         output_file.close()
 
-        relative_path = "uploads/" + final_filename
-        #base_path = "/home/ubuntu/github/roy_tensorflow_cv/tornado-upload-master"
-        base_path = sys.path[0]
-        abs_path = os.path.join(base_path, relative_path)
 
         result_str = predict_image(abs_path, roy_config)
         result_str = translate(result_str)
