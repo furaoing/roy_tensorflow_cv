@@ -5,6 +5,8 @@ from classify_image_roy_variant_web import predict_image
 from classify_image_roy_variant_web import roy_config
 from baidu_translate import translate
 
+import sys
+
 define("port", default=80, help="run on the given port", type=int)
 
 class Application(tornado.web.Application):
@@ -31,7 +33,8 @@ class UploadHandler(tornado.web.RequestHandler):
         output_file.close()
 
         relative_path = "uploads/" + final_filename
-        base_path = "/home/ubuntu/github/roy_tensorflow_cv/tornado-upload-master"
+        #base_path = "/home/ubuntu/github/roy_tensorflow_cv/tornado-upload-master"
+        base_path = sys.path[0]
         abs_path = os.path.join(base_path, relative_path)
 
         result_str = predict_image(abs_path, roy_config)
