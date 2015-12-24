@@ -31,7 +31,7 @@ class UploadHandler(tornado.web.RequestHandler):
         output_file.close()
 
         relative_path = "uploads/" + final_filename
-        base_path = "/home/furaoing/roy_tensorflow_cv/tornado-upload-master"
+        base_path = "/home/ubuntu/github/roy_tensorflow_cv/tornado-upload-master"
         abs_path = os.path.join(base_path, relative_path)
 
         result_str = predict_image(abs_path, roy_config)
