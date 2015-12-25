@@ -38,8 +38,10 @@ class UploadHandler(tornado.web.RequestHandler):
         output_file.write(file1['body'])
         output_file.close()
 
-
-        result_str = predict_image(abs_path, roy_config)
+        try:
+            result_str = predict_image(abs_path, roy_config)
+        except:
+            print("###### Prediction Function Call Failed #####")
         result_str = translate(result_str)
         result_str = result_str.replace(r"|", r"</br>")
         self.finish("Result:" + r"</br></br>" + result_str)
