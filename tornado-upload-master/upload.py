@@ -40,10 +40,11 @@ class UploadHandler(tornado.web.RequestHandler):
 
         try:
             result_str = predict_image(abs_path, roy_config)
+            result_str = translate(result_str)
         except:
             print("###### Prediction Function Call Failed #####")
-        result_str = translate(result_str)
-        result_str = result_str.replace(r"|", r"</br>")
+            result_str = "Prediction Function Call Failed"
+        
         self.finish("Result:" + r"</br></br>" + result_str)
         
 def main():
