@@ -166,7 +166,9 @@ def predict_image(image, config):
 
 
 class roy_config:
-        model_dir = '/tmp/imagenet'
+        base_path = sys.path[0]
+        model_dirname = 'imagenet'
+        model_dir = os.path.join(base_path, model_dirname)
         num_top_predictions = 5
         DATA_URL = 'http://download.tensorflow.org/models/image/imagenet/inception-2015-12-05.tgz'
 
