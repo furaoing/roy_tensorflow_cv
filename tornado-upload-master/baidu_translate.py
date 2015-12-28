@@ -34,5 +34,5 @@ def translate(query_str):
 
 
 if __name__ == "__main__":
-    q_str = "house"
+    q_str = "Prediction Function Call Failed"
     translate(q_str)
