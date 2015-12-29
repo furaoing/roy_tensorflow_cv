@@ -29,7 +29,6 @@ class UploadHandler(tornado.web.RequestHandler):
     node_lookup = NodeLookup(config)
     # Creates graph from saved GraphDef.
     create_graph(config)
-    logging.basicConfig(filename="server_log", level=logging.DEBUG)
 
     def post(self):
         file1 = self.request.files['file1'][0]
@@ -39,6 +38,7 @@ class UploadHandler(tornado.web.RequestHandler):
         final_filename= fname+extension
 
         relative_path = "uploads/" + final_filename
+        # base_path = "/home/furaoing/roy_tensorflow_cv/tornado-upload-master"
         base_path = sys.path[0]
         abs_path = os.path.join(base_path, relative_path)
 
@@ -48,18 +48,10 @@ class UploadHandler(tornado.web.RequestHandler):
 
         try:
             result_str = run_inference_on_image(abs_path, self.node_lookup, self.config)
-        except:
-            debug_msg = time.asctime() + " Method: run_inference_on_image Failed"
-            logging.debug(debug_msg)
-            result_str = "Image Format Error"
-
-        try:
             result_str = translate(result_str)
             result_str = result_str.replace(r"|", r"</br>")
         except:
-            debug_msg = time.asctime() + " Baidu Translate API Call Failed"
-            logging.debug(debug_msg)
-            result_str = "Baidu Translate API Call Failed"
+            result_str = "Image Format Incorrect !"
 
         self.finish("Result:" + r"</br></br>" + result_str)
 
