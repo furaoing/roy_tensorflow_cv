@@ -46,9 +46,13 @@ class UploadHandler(tornado.web.RequestHandler):
         output_file.write(file1['body'])
         output_file.close()
 
-        result_str = run_inference_on_image(abs_path, self.node_lookup, self.config)
-        result_str = translate(result_str)
-        result_str = result_str.replace(r"|", r"</br>")
+        try:
+            result_str = run_inference_on_image(abs_path, self.node_lookup, self.config)
+            result_str = translate(result_str)
+            result_str = result_str.replace(r"|", r"</br>")
+        except:
+            result_str = "Image Format Incorrect !"
+
         self.finish("Result:" + r"</br></br>" + result_str)
 
 
