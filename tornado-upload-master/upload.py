@@ -15,10 +15,7 @@ import time
 
 import sys
 
-define("port", default=8080, help="run on the given port", type=int)
-
-def test:
-    pass
+define("port", default=80, help="run on the given port", type=int)
 
 class Application(tornado.web.Application):
     def __init__(self):
