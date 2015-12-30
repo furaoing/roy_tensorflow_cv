@@ -17,6 +17,9 @@ import sys
 
 define("port", default=8080, help="run on the given port", type=int)
 
+def test:
+    pass
+
 class Application(tornado.web.Application):
     def __init__(self):
         handlers = [
